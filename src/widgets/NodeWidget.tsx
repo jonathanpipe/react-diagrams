@@ -1,7 +1,6 @@
 import * as React from "react";
 import { DiagramEngine } from "../DiagramEngine";
 import { NodeModel } from "../models/NodeModel";
-import { Toolkit } from "../Toolkit";
 import { BaseWidget, BaseWidgetProps } from "./BaseWidget";
 
 export interface NodeProps extends BaseWidgetProps {
@@ -37,7 +36,11 @@ export class NodeWidget extends BaseWidget<NodeProps, NodeState> {
 	}
 
 	getClassName() {
-		return "node " + super.getClassName() + (this.props.node.isSelected() ? this.bem("--selected") : "");
+		return (
+			"node " +
+			super.getClassName() +
+			(this.props.node.isSelected() ? this.bem("--selected") : "")
+		);
 	}
 
 	render() {
@@ -47,7 +50,7 @@ export class NodeWidget extends BaseWidget<NodeProps, NodeState> {
 				data-nodeid={this.props.node.id}
 				style={{
 					top: this.props.node.y,
-					left: this.props.node.x
+					left: this.props.node.x,
 				}}
 			>
 				{this.props.children}
